@@ -17,9 +17,18 @@ describe Bowling do
     end
   end
 
-  context "ガータのみがあるとき" do
-    skip
-  end
+  context "ガータがあるとき" do
+    it "すべてガータのときは0" do
+      data = [["-","-"],["-","-"],["-","-"],["-","-"],["-","-"],["-","-"],["-","-"],["-","-"],["-","-"],["-","-"]]
+      bowling = Bowling.new
+      expect(bowling.calculator(data)).to eq 0
+    end
+    it "ガータと数字が含まれるとき" do
+      data = [["-",1],[1,"-"],["-",1],[1,"-"],["-",1],[1,"-"],["-",1],[1,"-"],["-",1],[1,"-"]]
+      bowling = Bowling.new
+      expect(bowling.calculator(data)).to eq 10
+    end
+ end
 
   context "スペアがあるとき" do
     skip
