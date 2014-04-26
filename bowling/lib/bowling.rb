@@ -1,16 +1,31 @@
 class Bowling
 
-  def calculator(datas)
+  def calculator(data)
     result = 0
-    datas = convert_garter(datas)
-    datas.each_with_index do |(first, second), i|
-      result += first + second
+    data = convert_garter(data)
+
+    @flag = false
+    data.each do |first, second, third|
+      third = 0 if third.nil?
+
+      if @flag == true
+        result += first
+        @flag = false
+      end
+
+      if second == "/"
+        result += 10 + third
+        @flag = true
+      else
+        result += first + second
+      end
     end
+
     result
   end
 
-  def convert_garter(datas)
-    datas.map { |first, second| [first.to_s.sub(/\-/, "0").to_i, second.to_s.sub(/\-/, "0").to_i] }
+  def convert_garter(data)
+    data.map { |d| d.map {|val| val == "-" ? 0 : val} }
   end
 
 end
